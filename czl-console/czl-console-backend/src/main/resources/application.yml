@@ -1,0 +1,32 @@
+spring:
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+logging:
+  level:
+    root: info
+
+#线程池参数
+task:
+  pool:
+    # 核心线程池大小
+    core-pool-size: 10
+    # 最大线程数
+    max-pool-size: 30
+    # 活跃时间
+    keep-alive-seconds: 60
+    # 队列容量
+    queue-capacity: 50
+
+
+#登录图形验证码有效时间/分钟
+loginCode:
+  expiration: 2
+
+#密码加密传输，前端公钥加密，后端私钥解密
+rsa:
+  private_key: MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAOG/jdnCW8VvDWT/a3U1ZyFDYmlFTB0F+gkgefopKeRnWOs4RpGXFyUnlhaXIlVpLYnQsLvcJSJZb0b1IYEJJ+93mN2tF0Bzp5Qhcvz51PSMm7CEkj+9lwW1TsUnFIkBmKwC6YUy3q4yKWM4mK+fzRLPtbamOJlMhNG7fuTi5sANAgMBAAECgYEAji3S7V9X5VU4HnAwAbYMqgqCpMKcWXs2KyFlMYVTeSMOAbeD2pZKYYA5Kyks2pZPtAjYBrl0OdoSF6Kz400c9KqRaw0pDhAUGQtubqgHCt9j2Ix3EQpMRtqrXnCNwMvrK2Ab06isG6MXBHke7Us2SYMjS++dzvfLgwe5e7GKwpECQQDweB+Ccfr8WcAY5EmLPzmP93YkE1+bSlWMS6DWD4z/sgEdhB4g3KmrJY6pbqCqFhkmpKK3LqfDEmMWH7QD6v3zAkEA8FQJeDJWgKS50Et05ibeGcyw9cvSjiJoOMbZnkWzoV74B8+CreG9YZynbnhjl/DZZoANcM1FOy9uc8a4h9DJ/wJARmTTzIrzT0YyvtatVM8IWcW2Vu848Ku9CVnmVmOtAfko7GwNqc8O+CQBdEYHUGMxr6dIXtmQkMFkMkjLmM4E0wJABWqPcBMKWgncWjJpJwq3NLOlRVTboPJrkOQCYYvGmZtvUZW+pzaQMxP5vgaej/0QmTvHkcQ+jC/seFWBMSZmdwJAENZ/RBzrZh81nBiEG0X1rnKdWmZIdQ98ja5KKhPgwqLvdauJSRu5nA37j87T3NbrXeJmD7IXsTaQ3/diLZ8dFw==

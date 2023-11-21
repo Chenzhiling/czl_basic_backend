@@ -1,0 +1,45 @@
+server:
+  port: 1201
+  servlet:
+    context-path: /czl
+
+
+spring:
+  datasource:
+    url: jdbc:mysql://locakhost:3306/czl?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  redis:
+    database: 0           # Redis服务器数据库
+    host: 127.0.0.1    # Redis服务器地址
+    port: 6379            # Redis服务器连接端口
+    password:
+    timeout: 6000ms       # 连接超时时间（毫秒）
+
+
+jwt:
+  header: Authorization
+  # 令牌前缀
+  token-start-with: Bearer
+  # 必须使用最少88位的Base64对该令牌进行编码
+  base64-secret: ZmQ0ZGI5NjQ0MDQwY2I4MjMxY2Y3ZmI3MjdhN2ZmMjNhODViONANHUBIGDATACENTRE5NzYxMjdjOWMwYWRmZTBlZjlhNGY3ZTg4Y2U3YTE1ODVkZDU5Y2Y3OGYwZWE1NzUzNWQ2YjFjZDc0NGMxZWU2MmQ3MjY1NzJmNTE0MzI=
+  # 令牌过期时间 此处单位/毫秒 ，设置为2小时
+  token-validity-in-seconds: 7200000
+  # 在线用户key
+  online-key: online-token
+  # 验证码
+  code-key: code-key
+
+#是否限制单用户登录
+single:
+  login: true
+
+swagger:
+  author: CHEN ZHI LING
+  enabled: true
+  title: czl
+  serverUrl: czl
+  version: 1.0
+  email: 122769965@qq.com
