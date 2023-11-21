@@ -1,0 +1,58 @@
+<assembly>
+    <!--添加到生成文件名称的后缀符 例如${artifactId}-${id}.tar.gz-->
+    <id>bin</id>
+    <formats>
+        <!--支持的打包格式-->
+        <format>tar.gz</format>
+    </formats>
+    <!--将依赖打入指定文件夹-->
+    <dependencySets>
+        <dependencySet>
+            <unpack>false</unpack>
+            <!--符合runtime作用范围的依赖会被打包进去-->
+            <scope>runtime</scope>
+            <!--是否把当前pom项目添加到依赖文件夹下-->
+            <useProjectArtifact>true</useProjectArtifact>
+            <!--将项目所有依赖包拷贝到lib目录下-->
+            <outputDirectory>lib</outputDirectory>
+            <excludes>
+                <!--排除以下jar包-->
+                <exclude>javax.servlet:servlet-api</exclude>
+            </excludes>
+        </dependencySet>
+    </dependencySets>
+
+
+    <fileSets>
+        <fileSet>
+            <directory>src/assembly/bin</directory>
+            <outputDirectory>bin</outputDirectory>
+            <fileMode>0755</fileMode>
+        </fileSet>
+        <fileSet>
+            <directory>${project.build.directory}/lib</directory>
+            <outputDirectory>lib</outputDirectory>
+            <fileMode>0755</fileMode>
+        </fileSet>
+        <fileSet>
+            <directory>src/assembly/logs</directory>
+            <outputDirectory>logs</outputDirectory>
+            <fileMode>0755</fileMode>
+        </fileSet>
+        <fileSet>
+            <directory>src/assembly/script</directory>
+            <outputDirectory>script</outputDirectory>
+            <fileMode>0755</fileMode>
+        </fileSet>
+        <!--将resources资源下配置文件打包放入到conf文件夹下-->
+        <fileSet>
+            <directory>src/main/resources</directory>
+            <outputDirectory>conf</outputDirectory>
+            <fileMode>0755</fileMode>
+            <includes>
+                <include>*.yml</include>
+                <include>*.properties</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+</assembly>
