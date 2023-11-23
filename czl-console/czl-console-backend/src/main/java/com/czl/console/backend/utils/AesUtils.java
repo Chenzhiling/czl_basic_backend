@@ -21,12 +21,7 @@ public class AesUtils {
     //aes的key
     private static Key AES_KEY;
 
-    /**
-     * AES 加密
-     * @author chenzaiyu
-     * @param content 加密内容
-     * @return String 加密后结果
-     */
+
     public static String encryptByAes(String content) {
         if(ObjectUtils.isEmpty(content)){
             return null;
@@ -36,7 +31,7 @@ public class AesUtils {
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
             cipher.init(Cipher.ENCRYPT_MODE, getKey());
             byte[] result = cipher.doFinal(content.getBytes());
-            return org.apache.commons.codec.binary.Base64.encodeBase64String(result);//通过Base64转码返回
+            return org.apache.commons.codec.binary.Base64.encodeBase64String(result);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
