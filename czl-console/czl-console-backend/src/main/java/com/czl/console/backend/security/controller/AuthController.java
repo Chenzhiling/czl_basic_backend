@@ -1,6 +1,7 @@
 package com.czl.console.backend.security.controller;
 
 import com.czl.console.backend.aop.AnonymousAccess;
+import com.czl.console.backend.base.domain.RestResponse;
 import com.czl.console.backend.security.config.SecurityProperties;
 import com.czl.console.backend.security.dto.AuthUserDto;
 import com.czl.console.backend.security.dto.JwtUserDto;
@@ -78,7 +79,7 @@ public class AuthController {
             //踢掉之前已经登录的token
             onlineUserService.checkLoginOnUser(jwtUserDto.getUsername(), token);
         }
-        return new ResponseEntity<>(authInfo, HttpStatus.OK);
+        return new ResponseEntity<>(RestResponse.success(authInfo), HttpStatus.OK);
     }
 
 

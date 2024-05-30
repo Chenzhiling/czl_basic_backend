@@ -1,5 +1,5 @@
 server:
-  port: 1201
+  port: 6789
   servlet:
     context-path: /czl
 
@@ -28,7 +28,7 @@ jwt:
   # 令牌过期时间 此处单位/毫秒 ，设置为2小时
   token-validity-in-seconds: 7200000
   # 在线用户key
-  online-key: online-token
+  online-key: czl-online-token
   # 验证码
   code-key: code-key
 
