@@ -11,7 +11,7 @@ export default defineConfig({
     // 设置代理，根据我们项目实际情况配置
     proxy: {
       '/api': {
-        target: 'http://10.88.10.44:1202/chaoyi',
+        target: 'http://10.88.10.44:6789/czl',
         // changeOrigin: true,
         ws: true,
         // secure: false,
