@@ -1,35 +1,31 @@
 package com.czl.console.backend.system.dto;
 
+import com.czl.console.backend.base.domain.BaseEntity;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class MenuDto {
+public class MenuDto extends BaseEntity {
 
-    private Long id;
-
-    private Long pid;
-
-    private List<MenuDto> children;
-
-    private int type;
-
-    private String title;
+    private Long parentId;
 
     private String name;
 
-    private String component;
-
-    private int menuSort;
-
     private String icon;
 
-    private String path;
+    private int hidden;
 
-    private Boolean iFrame;
+    private int level;
 
-    private Boolean hidden;
+    private int sort;
+
+    private String title;
 
     private String permission;
+
+    private String type;
+
+    private List<MenuDto> children;
+
 }

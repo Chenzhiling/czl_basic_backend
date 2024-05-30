@@ -11,23 +11,6 @@ import java.util.Set;
 public interface MenuService extends BaseService<Menu> {
 
 
-    /**
-     * 新增一条数据
-     */
-    Map<String, Object> addMenu(Menu menu);
-
-
-    /**
-     * 删除一条数据
-     */
-    Map<String, Object> deleteMenu(Long id);
-
-
-    /**
-     * 根据pid查找所有菜单
-     */
-    Map<String, Object> findMenusByPid(Long parentId);
-
 
     /**
      * 构建菜单树，所有菜单
@@ -45,6 +28,4 @@ public interface MenuService extends BaseService<Menu> {
      * 构建用户的菜单树
      */
     Map<String, Object> listALl();
-
-    Map<String, Object> listMenus();
 }
