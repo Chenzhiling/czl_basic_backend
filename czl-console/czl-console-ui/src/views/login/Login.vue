@@ -20,7 +20,7 @@
         </el-form-item>
 
         <el-form-item>
-          <el-button type="primary" @click="submitForm(loginFormRef)">
+          <el-button type="primary" :loading='loginLoading' @click="handleLogin(loginFormRef)">
             登录
           </el-button>
           <el-button type="primary" @click="resetForm(loginFormRef)">
@@ -37,7 +37,12 @@
 //导入组合式api
 import { reactive, ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
+import {useUserStore} from "../../store/userInfo";
+import { ElForm, ElMessage } from 'element-plus'
 
+let userStore = useUserStore()
+//登录按钮加载属性
+let loginLoading = ref(false)
 
 //定义对象绑定表单
 const loginFormRef = ref<FormInstance>()
@@ -46,10 +51,9 @@ const loginFormRef = ref<FormInstance>()
 const loginFormData = reactive({
   userName: '',
   password: '',
-  code: ''
 })
 
-//验证用户名
+//验证用户名函数
 const validateUserName = (rule: any, value: any, callback: any) => {
   if (value === '') {
     callback(new Error('请输入用户名'))
@@ -57,7 +61,7 @@ const validateUserName = (rule: any, value: any, callback: any) => {
     callback()
   }
 }
-//验证密码
+//验证密码函数
 const validatePassword = (rule: any, value: any, callback: any) => {
   if (value === '') {
     callback(new Error('请输入密码'))
@@ -72,13 +76,28 @@ const rules = reactive<FormRules<typeof loginFormData>>({
   password: [{ validator: validatePassword, trigger: 'blur' }],
 })
 //提交按钮
-const submitForm = (formEl: FormInstance | undefined) => {
+const handleLogin = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.validate((valid) => {
     if (valid) {
-      console.log('submit!')
+      loginLoading.value = true
+      const user = {
+        username: loginFormData.userName,
+        password: loginFormData.password,
+      }
+      userStore
+          .loginRequest(user)
+          .then((res) => {
+            if (res.result === 'success') {
+              loginLoading.value = false
+              //登录成功，取消
+            } else {
+              ElMessage.error(res.message)
+              loginLoading.value = false
+            }
+          })
     } else {
-      console.log('error submit!')
+      ElMessage.error("登录失败,请输入用户名和密码")
     }
   })
 }
@@ -87,6 +106,7 @@ const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.resetFields()
 }
+
 </script>
 
 <style scoped lang="scss">
