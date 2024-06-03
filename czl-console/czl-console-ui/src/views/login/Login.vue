@@ -35,14 +35,17 @@
 
 <script setup lang="ts">
 //导入组合式api
-import { reactive, ref } from 'vue'
-import type { FormInstance, FormRules } from 'element-plus'
+import {reactive, ref} from 'vue'
+import type {FormInstance, FormRules} from 'element-plus'
+import {ElMessage} from 'element-plus'
 import {useUserStore} from "../../store/userInfo";
-import { ElForm, ElMessage } from 'element-plus'
+import {useRouter} from 'vue-router'
 
 let userStore = useUserStore()
 //登录按钮加载属性
 let loginLoading = ref(false)
+
+let router = useRouter()
 
 //定义对象绑定表单
 const loginFormRef = ref<FormInstance>()
@@ -89,8 +92,12 @@ const handleLogin = (formEl: FormInstance | undefined) => {
           .loginRequest(user)
           .then((res) => {
             if (res.result === 'success') {
+              ElMessage({
+                message: '登录成功',
+                type: 'success',
+              })
               loginLoading.value = false
-              //登录成功，取消
+              router.push("/index")
             } else {
               ElMessage.error(res.message)
               loginLoading.value = false
