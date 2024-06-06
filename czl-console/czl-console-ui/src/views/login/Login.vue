@@ -38,7 +38,7 @@
 import {reactive, ref} from 'vue'
 import type {FormInstance, FormRules} from 'element-plus'
 import {ElMessage} from 'element-plus'
-import {useUserStore} from "../../store/userInfo";
+import { useUserStore } from '@/store/userInfo'
 import {useRouter} from 'vue-router'
 
 let userStore = useUserStore()
