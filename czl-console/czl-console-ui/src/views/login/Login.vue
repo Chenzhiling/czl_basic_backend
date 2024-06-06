@@ -1,29 +1,37 @@
 <template>
   <div class="login">
     <div class="box">
-      <h2>快速开发系统</h2>
+      <h2>小陈的系统</h2>
       <el-form
           size="small"
           ref="loginFormRef"
-          style="max-width: 400px"
+          style="max-width: 500px"
           :model="loginFormData"
           status-icon
           :rules="rules"
           label-width="40px"
       >
         <el-form-item label="账号" prop="userName">
-          <el-input v-model="loginFormData.userName"></el-input>
+          <el-input v-model="loginFormData.userName"
+                    :prefix-icon="Avatar"></el-input>
         </el-form-item>
 
         <el-form-item label="密码" prop="password">
-          <el-input v-model="loginFormData.password" type="password"></el-input>
+          <el-input v-model="loginFormData.password"
+                    type="password" :prefix-icon="Lock">
+          </el-input>
         </el-form-item>
 
         <el-form-item>
-          <el-button type="primary" :loading='loginLoading' @click="handleLogin(loginFormRef)">
+          <el-button type="primary"
+                     :loading='loginLoading'
+                     @click="handleLogin(loginFormRef)"
+                     style="width: 48%">
             登录
           </el-button>
-          <el-button type="primary" @click="resetForm(loginFormRef)">
+          <el-button type="default"
+                     @click="resetForm(loginFormRef)"
+                     style="width: 48%">
             重置
           </el-button>
         </el-form-item>
@@ -40,6 +48,7 @@ import type {FormInstance, FormRules} from 'element-plus'
 import {ElMessage} from 'element-plus'
 import { useUserStore } from '@/store/userInfo'
 import {useRouter} from 'vue-router'
+import {Avatar,Lock} from '@element-plus/icons-vue'
 
 let userStore = useUserStore()
 //登录按钮加载属性
@@ -117,12 +126,12 @@ const resetForm = (formEl: FormInstance | undefined) => {
 </script>
 
 <style scoped lang="scss">
-//login表签的css
 .login {
   width: 100vw;
   height: 100vh;
-  //换颜色
-  background: #134857;
+  //背景图片
+  background-image: url("../../assets/loginPicture.jpg");
+  background-size: cover;
   //弹性布局
   display: flex;
   //横轴对其方式
@@ -130,19 +139,39 @@ const resetForm = (formEl: FormInstance | undefined) => {
   //纵轴对其方式
   align-items: center;
   .box{
-    width: 400px;
-    //height: 200px;
-    border: 1px solid #ffff;
-    padding: 20px;
+    width: 450px;
+    height: 450px;
+    border: 5px solid #ffff;
+    padding: 50px 10px;
+    border-radius: 10px;
     //把字体变白色
     :deep(.el-form-item__label){
       color: #ffff;
+      font-size: 25px;
+      padding-left: 5px;
+    }
+    //修改输入框样式
+    :deep(.el-input__inner) {
+      height:50px;
+      font-size: 25px;
+      font-weight: normal;
+    }
+    //修改按钮样式
+    :deep(.el-button--small){
+      font-size: 25px;
+      --el-button-size: 36px;
+    }
+    //修改图标样式
+    :deep(.el-icon){
+      color: black;
+      font-size: 25px;
     }
     h2{
-      color: #ffff;
-      font-size: 30px;
+      color: white;
+      font-size: 28px;
       text-align: center;
-      margin-bottom: 20px
+      line-height: 100px;
+      padding-top: 10px;
     }
   }
 }
